@@ -1,6 +1,6 @@
 # 💸 MyMoney
 
-Aplicativo de Gestão Financeira
+Aplicação de Gestão Financeira
 
 ---
 
