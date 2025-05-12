@@ -49,3 +49,6 @@ Investidores e indivíduos que carecem de educação financeira
 ---
 
 O MyMoney é um aplicativo de gestão financeira que permite controlar receitas e despesas, categorizar gastos e gerar relatórios mensais, visando facilitar o acompanhamento do orçamento pessoal.
+
+
+lalala
