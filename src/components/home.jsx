@@ -47,9 +47,6 @@ export default function Home({ onLogout }) {
         <button className="nav-button logout-button" onClick={onLogout}>
           Logout
         </button>
-        <button onCliclk={props.onRelatorio} className="bg-blue-500 text-white px-4 py-2 rounded-md">
-          Ver Relatório Mensal
-        </button>
       </nav>
 
       <div className="home-content">{renderTela()}</div>

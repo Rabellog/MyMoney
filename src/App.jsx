@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import Login from './components/Login'
-import Home from './components/Home'
-import RelatorioMensal from './components/relatoriomensal'
+import Login from './components/login'
+import Home from './components/home'
 
 export default function App() {
   const [page, setPage] = useState('login')
@@ -9,8 +8,7 @@ export default function App() {
   return (
     <>
       {page === 'login' && <Login onLogin={() => setPage('home')} />}
-      {page === 'home' && <Home onRelatorio={() => setPage('relatorio')} />}
-      {page === 'relatorio' && <RelatorioMensal />}
+      {page === 'home' && <Home n/>}
     </>
   )
 }
