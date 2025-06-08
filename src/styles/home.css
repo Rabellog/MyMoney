@@ -1,0 +1,41 @@
+.home-container {
+  font-family: Arial, sans-serif;
+}
+
+.home-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px;
+}
+
+.nav-button {
+  background-color: #61dafb;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.nav-button:hover {
+  background-color: #21a1f1;
+  transform: scale(1.05);
+}
+
+.logout-button {
+  background-color: #ff4d4d;
+}
+
+.logout-button:hover {
+  background-color: #e60000;
+}
+
+.home-content {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+}
