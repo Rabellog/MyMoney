@@ -4,34 +4,6 @@ import '../styles/cadastrogastos.css';
 export default function CadastroGastos({ expenses, onAddExpense, onDeleteExpense }) {
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState('');
-  const [category, setCategory] = useState('');
-
-  const handleAddExpense = (e) => {
-    e.preventDefault();
-
-    if (!description || !amount || !category) {
-      alert('Por favor, preencha a descrição, o valor e a categoria.');
-      return;
-    }
-
-    const newExpense = {
-      id: Date.now(),
-      description,
-      amount: parseFloat(amount),
-      category,
-      date: new Date().toLocaleDateString('pt-BR'),
-    };
-
-    onAddExpense(newExpense);
-    setDescription('');
-    setAmount('');
-    setCategory('');
-  };
-
-  const handleDeleteExpenseClick = (id) => {
-    onDeleteExpense(id);
-  };
-
   const categories = [
     'Alimentação',
     'Transporte',
@@ -41,12 +13,40 @@ export default function CadastroGastos({ expenses, onAddExpense, onDeleteExpense
     'Educação',
     'Outros'
   ];
+  const [category, setCategory] = useState(categories[0]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!description || !amount || !category) {
+      alert('Por favor, preencha a descrição, o valor e a categoria.');
+      return;
+    }
+
+    const amountNumerical = parseFloat(amount.replace(',', '.'));
+    if (isNaN(amountNumerical)) {
+      alert('Valor inválido!');
+      return;
+    }
+    onAddExpense({
+      description,
+      amount: amountNumerical,
+      category,
+      date: new Date().toISOString().slice(0, 10) 
+    });
+    setDescription('');
+    setAmount('');
+    setCategory(categories[0]);
+  }
+
+  const handleDeleteExpenseClick = (id) => {
+    onDeleteExpense(id);
+  };
 
   return (
     <div className="spending-container">
       <h2>Cadastro de Gastos (Saída)</h2>
 
-      <form onSubmit={handleAddExpense} className="expense-form">
+      <form onSubmit={handleSubmit} className="expense-form">
         <div>
           <label htmlFor="description">Descrição:</label>
           <input

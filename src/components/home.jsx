@@ -1,61 +1,35 @@
-import React, { useState, useEffect } from 'react'; 
+import React, { useState } from 'react'; 
 import CadastroGastos from './cadastrogastos';
-import CadastroRecebimentos from './cadastrorecebimentos';
-import RelatorioMensal from './relatoriomensal';
-import FiltroCategoria from './filtrocategoria';
 import GraficoPizza from './graficopizza';
+import RelatorioMensal from './relatoriomensal';
 
 import '../styles/home.css';
 
 export default function Home({ onLogout }) {
-  const [telaAtual, setTelaAtual] = useState('home');
-
   const [expenses, setExpenses] = useState([]);
+  const [incomes, setIncomes] = useState([]);
+  const [telaAtual, setTelaAtual] = useState('cadastroGastos');
 
-  useEffect(() => {
-    const storedExpenses = localStorage.getItem('spendingTrackerExpenses');
-    if (storedExpenses) {
-      setExpenses(JSON.parse(storedExpenses));
-    }
-  }, []);
+  function handleAddExpense(expense) {
+    setExpenses(prev => [
+      ...prev,
+      { ...expense, id: Date.now() }
+    ]);
+  }
 
-  useEffect(() => {
-    localStorage.setItem('spendingTrackerExpenses', JSON.stringify(expenses));
-  }, [expenses]);
+  function handleDeleteExpense(id) {
+    setExpenses(prev => prev.filter(exp => exp.id !== id));
+  }
 
-  const handleAddExpense = (newExpense) => {
-    setExpenses((prevExpenses) => [...prevExpenses, newExpense]);
-  };
+  function handleAddIncome(income) {
+    setIncomes(prev => [
+      ...prev,
+      { ...income, id: Date.now() }
+    ]);
+  }
 
-  const handleDeleteExpense = (id) => {
-    setExpenses((prevExpenses) => prevExpenses.filter(expense => expense.id !== id));
-  };
-
-  const renderTela = () => {
-    switch (telaAtual) {
-      case 'cadastroGastos':
-        return (
-          <CadastroGastos
-            expenses={expenses}
-            onAddExpense={handleAddExpense}
-            onDeleteExpense={handleDeleteExpense}
-          />
-        );
-      case 'cadastroRecebimentos':
-        return <CadastroRecebimentos />;
-      case 'relatorioMensal':
-        return <RelatorioMensal expenses={expenses} />;
-      case 'filtroCategoria':
-        return <FiltroCategoria expenses={expenses} />;
-      default:
-        return (
-          <div className="home-content">
-            <h1>Bem-vindo à Página Inicial!</h1>
-            <p>Escolha uma opção no menu acima.</p>
-          </div>
-        );
-    }
-  };
+  const CadastroRecebimentos = () => <div>Cadastro de Recebimentos (implemente aqui)</div>;
+  const FiltroCategoria = () => <div>Filtro por Categoria (implemente aqui)</div>;
 
   return (
     <div className="home-container">
@@ -78,8 +52,28 @@ export default function Home({ onLogout }) {
       </nav>
 
       <div className="home-content">
-        {renderTela()}
-        <GraficoPizza expenses={expenses} />
+        {telaAtual === 'cadastroGastos' && (
+          <>
+            <CadastroGastos
+              expenses={expenses}
+              onAddExpense={handleAddExpense}
+              onDeleteExpense={handleDeleteExpense}
+            />
+            <GraficoPizza gastos={expenses} />
+          </>
+        )}
+        {telaAtual === 'cadastroRecebimentos' && (
+          <CadastroRecebimentos
+            incomes={incomes}
+            onAddIncome={handleAddIncome}
+          />
+        )}
+        {telaAtual === 'relatorioMensal' && (
+          <RelatorioMensal expenses={expenses} incomes={incomes} />
+        )}
+        {telaAtual === 'filtroCategoria' && (
+          <FiltroCategoria expenses={expenses} />
+        )}
       </div>
     </div>
   );
