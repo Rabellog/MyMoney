@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'; // Import useEffect
+import React, { useState, useEffect } from 'react'; 
 import CadastroGastos from './cadastrogastos';
 import CadastroRecebimentos from './cadastrorecebimentos';
 import RelatorioMensal from './relatoriomensal';
 import FiltroCategoria from './filtrocategoria';
+import GraficoPizza from './graficopizza';
 
 import '../styles/home.css';
 
@@ -76,7 +77,10 @@ export default function Home({ onLogout }) {
         </button>
       </nav>
 
-      <div className="home-content">{renderTela()}</div>
+      <div className="home-content">
+        {renderTela()}
+        <GraficoPizza expenses={expenses} />
+      </div>
     </div>
   );
 }

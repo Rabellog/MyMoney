@@ -8,7 +8,7 @@ export default function App() {
   return (
     <>
       {page === 'login' && <Login onLogin={() => setPage('home')} />}
-      {page === 'home' && <Home n/>}
+      {page === 'home' && <Home onLogout={() => setPage('login')} />}
     </>
   )
 }

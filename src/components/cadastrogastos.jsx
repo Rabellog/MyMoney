@@ -4,13 +4,13 @@ import '../styles/cadastrogastos.css';
 export default function CadastroGastos({ expenses, onAddExpense, onDeleteExpense }) {
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState('');
-  const [category, setCategory] = useState('Alimentação');
+  const [category, setCategory] = useState('');
 
   const handleAddExpense = (e) => {
     e.preventDefault();
 
-    if (!description || !amount) {
-      alert('Por favor, preencha a descrição e o valor.');
+    if (!description || !amount || !category) {
+      alert('Por favor, preencha a descrição, o valor e a categoria.');
       return;
     }
 
@@ -25,7 +25,7 @@ export default function CadastroGastos({ expenses, onAddExpense, onDeleteExpense
     onAddExpense(newExpense);
     setDescription('');
     setAmount('');
-    setCategory('Alimentação');
+    setCategory('');
   };
 
   const handleDeleteExpenseClick = (id) => {

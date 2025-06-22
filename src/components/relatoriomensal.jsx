@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import {
+  PieChart, Pie, Cell, Tooltip, ResponsiveContainer
+} from 'recharts';
 
 const RelatorioMensal = () => {
   const [movimentacoes, setMovimentacoes] = useState([]);
@@ -54,7 +56,11 @@ const RelatorioMensal = () => {
       <h2 className="text-3xl font-bold text-center">Relatório Mensal</h2>
 
       <div className="flex flex-wrap items-center justify-center gap-4">
-        <select value={mesSelecionado} onChange={e => setMesSelecionado(e.target.value)} className="border p-2 rounded">
+        <select
+          value={mesSelecionado}
+          onChange={e => setMesSelecionado(e.target.value)}
+          className="border p-2 rounded"
+        >
           {[...Array(12)].map((_, i) => (
             <option key={i} value={i + 1}>{i + 1}</option>
           ))}
@@ -73,8 +79,8 @@ const RelatorioMensal = () => {
         <div className="text-lg font-bold">Saldo: R$ {saldo.toFixed(2)}</div>
       </div>
 
-      <div className="h-64 w-full">
-        <ResponsiveContainer width="100%" height="100%">
+      <div className="w-full">
+        <ResponsiveContainer width="100%" height={300}>
           <PieChart>
             <Pie dataKey="value" data={dadosCategorias} outerRadius={80} label>
               {dadosCategorias.map((entry, index) => (
