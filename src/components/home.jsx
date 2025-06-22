@@ -1,24 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // Import useEffect
 import CadastroGastos from './cadastrogastos';
 import CadastroRecebimentos from './cadastrorecebimentos';
 import RelatorioMensal from './relatoriomensal';
 import FiltroCategoria from './filtrocategoria';
 
-import '../styles/home.css'; 
+import '../styles/home.css';
 
 export default function Home({ onLogout }) {
   const [telaAtual, setTelaAtual] = useState('home');
 
+  const [expenses, setExpenses] = useState([]);
+
+  useEffect(() => {
+    const storedExpenses = localStorage.getItem('spendingTrackerExpenses');
+    if (storedExpenses) {
+      setExpenses(JSON.parse(storedExpenses));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('spendingTrackerExpenses', JSON.stringify(expenses));
+  }, [expenses]);
+
+  const handleAddExpense = (newExpense) => {
+    setExpenses((prevExpenses) => [...prevExpenses, newExpense]);
+  };
+
+  const handleDeleteExpense = (id) => {
+    setExpenses((prevExpenses) => prevExpenses.filter(expense => expense.id !== id));
+  };
+
   const renderTela = () => {
     switch (telaAtual) {
       case 'cadastroGastos':
-        return <CadastroGastos />;
+        return (
+          <CadastroGastos
+            expenses={expenses}
+            onAddExpense={handleAddExpense}
+            onDeleteExpense={handleDeleteExpense}
+          />
+        );
       case 'cadastroRecebimentos':
         return <CadastroRecebimentos />;
       case 'relatorioMensal':
-        return <RelatorioMensal />;
+        return <RelatorioMensal expenses={expenses} />;
       case 'filtroCategoria':
-        return <FiltroCategoria />;
+        return <FiltroCategoria expenses={expenses} />;
       default:
         return (
           <div className="home-content">
