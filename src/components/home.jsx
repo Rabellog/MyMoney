@@ -28,7 +28,13 @@ export default function Home({ onLogout }) {
     ]);
   }
 
-  const CadastroRecebimentos = () => <div>Cadastro de Recebimentos (implemente aqui)</div>;
+  const CadastroRecebimentos = () => (
+    <div className="cadastro-recebimentos">
+      <h2>Cadastro de Recebimentos</h2>
+      {/* Implemente o formulário de cadastro de recebimentos aqui */}
+    </div>
+  );
+
   const FiltroCategoria = () => <div>Filtro por Categoria (implemente aqui)</div>;
 
   return (

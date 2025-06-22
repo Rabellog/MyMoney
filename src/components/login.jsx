@@ -8,12 +8,14 @@ export default function Login({ onLogin }) {
 
   return (
     <div className="login-container">
-      <form className="login-form" onSubmit={handleSubmit}>
+      <div className="login-box">
         <h2>Login</h2>
-        <input type="email" placeholder="Email" required />
-        <input type="password" placeholder="Senha" required />
-        <button type="submit">Entrar</button>
-      </form>
+        <form className="login-form" onSubmit={handleSubmit}>
+          <input type="email" placeholder="Email" required />
+          <input type="password" placeholder="Senha" required />
+          <button type="submit">Entrar</button>
+        </form>
+      </div>
     </div>
   )
 }

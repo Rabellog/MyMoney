@@ -1,13 +1,18 @@
 .home-container {
   font-family: Arial, sans-serif;
+  min-height: 100vh;
+  background: #181c24;
+  color: #e0e6ed;
 }
 
 .home-nav {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
   gap: 12px;
-  padding: 16px;
+  padding: 24px 0 16px 0;
+  background: #23283a;
+  border-bottom: 1.5px solid #23283a;
+  box-shadow: 0 2px 8px #0002;
 }
 
 .nav-button {
@@ -35,7 +40,9 @@
 }
 
 .home-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 0;
   text-align: center;
   margin-top: 40px;
-  padding: 20px;
 }

@@ -11,6 +11,21 @@ a {
   text-decoration: none;
 }
 
+input, select, textarea {
+  background: #181c24;
+  color: #e0e6ed;
+  border: 1px solid #353b4b;
+  border-radius: 5px;
+  padding: 10px 12px;
+  font-size: 1em;
+  transition: border 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+  border: 1.5px solid #4fc3f7;
+  outline: none;
+}
+
 button, .nav-button {
   background: linear-gradient(90deg, #4fc3f7 0%, #1976d2 100%);
   color: #fff;
@@ -37,19 +52,4 @@ button:hover, .nav-button:hover {
 
 .logout-button:hover {
   background: #ff1744;
-}
-
-input, select, textarea {
-  background: #181c24;
-  color: #e0e6ed;
-  border: 1px solid #353b4b;
-  border-radius: 5px;
-  padding: 10px 12px;
-  font-size: 1em;
-  transition: border 0.2s;
-}
-
-input:focus, select:focus, textarea:focus {
-  border: 1.5px solid #4fc3f7;
-  outline: none;
 }
