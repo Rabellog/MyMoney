@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
   PieChart, Pie, Cell, Tooltip, ResponsiveContainer
 } from 'recharts';
+import '../styles/relatoriomensal.css';
 
 const cores = ['#8884d8', '#82ca9d', '#ffc658', '#ff8042', '#8dd1e1', '#ffb3ba', '#baffc9', '#bae1ff'];
 
@@ -13,18 +14,16 @@ function getMonthName(m) {
 }
 
 export default function RelatorioMensal({ expenses = [], incomes = [] }) {
-  // expenses: [{ description, amount, category, date, id }]
-  // incomes: [{ description, amount, category, date, id }]
+
   const [mesSelecionado, setMesSelecionado] = useState(new Date().getMonth() + 1);
   const [anoSelecionado, setAnoSelecionado] = useState(new Date().getFullYear());
 
-  // Unifica receitas e despesas para tabela
   const movimentos = [
     ...(incomes || []).map(i => ({ ...i, tipo: 'Receita' })),
     ...(expenses || []).map(e => ({ ...e, tipo: 'Gasto' }))
   ];
 
-  // Filtra por mês/ano
+
   const dadosFiltrados = movimentos.filter(mov => {
     const data = new Date(mov.date);
     return (
@@ -33,7 +32,6 @@ export default function RelatorioMensal({ expenses = [], incomes = [] }) {
     );
   });
 
-  // Totais
   const totalReceitas = dadosFiltrados
     .filter(m => m.tipo === 'Receita')
     .reduce((acc, cur) => acc + Number(cur.amount), 0);
@@ -44,7 +42,7 @@ export default function RelatorioMensal({ expenses = [], incomes = [] }) {
 
   const saldo = totalReceitas - totalGastos;
 
-  // Dados para gráfico de pizza (por categoria de gasto)
+
   const dadosCategorias = [];
   dadosFiltrados.filter(m => m.tipo === 'Gasto').forEach(m => {
     const existente = dadosCategorias.find(d => d.name === m.category);
@@ -56,7 +54,7 @@ export default function RelatorioMensal({ expenses = [], incomes = [] }) {
   });
 
   return (
-    <div style={{
+    <div className="relatorio-mensal-container" style={{
       maxWidth: 800,
       margin: '40px auto',
       background: '#fff',
@@ -65,7 +63,7 @@ export default function RelatorioMensal({ expenses = [], incomes = [] }) {
       padding: 32
     }}>
       <h2 style={{ textAlign: 'center', marginBottom: 24 }}>Relatório Mensal</h2>
-      <div style={{ display: 'flex', gap: 16, justifyContent: 'center', marginBottom: 24 }}>
+      <div className="relatorio-mensal-filtros" style={{ display: 'flex', gap: 16, justifyContent: 'center', marginBottom: 24 }}>
         <select
           value={mesSelecionado}
           onChange={e => setMesSelecionado(Number(e.target.value))}
@@ -83,7 +81,7 @@ export default function RelatorioMensal({ expenses = [], incomes = [] }) {
         />
       </div>
 
-      <div style={{
+      <div className="relatorio-mensal-resumo" style={{
         display: 'flex',
         gap: 32,
         flexWrap: 'wrap',
@@ -91,7 +89,7 @@ export default function RelatorioMensal({ expenses = [], incomes = [] }) {
         alignItems: 'center',
         marginBottom: 32
       }}>
-        <div style={{
+        <div className="relatorio-mensal-card" style={{
           minWidth: 220,
           background: '#f5f5f5',
           borderRadius: 12,
@@ -105,7 +103,7 @@ export default function RelatorioMensal({ expenses = [], incomes = [] }) {
           <div style={{ color: '#333', fontWeight: 'bold', fontSize: 18, marginTop: 12 }}>Saldo</div>
           <div style={{ fontSize: 22, color: saldo >= 0 ? '#2ecc40' : '#e74c3c' }}>R$ {saldo.toFixed(2)}</div>
         </div>
-        <div style={{ width: 320, height: 240 }}>
+        <div className="relatorio-mensal-grafico" style={{ width: 320, height: 240 }}>
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -129,7 +127,7 @@ export default function RelatorioMensal({ expenses = [], incomes = [] }) {
         </div>
       </div>
 
-      <div>
+      <div className="relatorio-mensal-tabela">
         <h3 style={{ marginBottom: 12 }}>Movimentações do mês</h3>
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>

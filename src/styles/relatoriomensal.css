@@ -1,0 +1,152 @@
+.relatorio-mensal-container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #23283a;
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+  padding: 32px;
+  color: #e0e6ed;
+}
+
+.relatorio-mensal-container h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  color: #4fc3f7;
+  font-size: 2.2em;
+  letter-spacing: 1px;
+}
+
+.relatorio-mensal-filtros {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.relatorio-mensal-filtros select,
+.relatorio-mensal-filtros input[type="number"] {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #353b4b;
+  background: #181c24;
+  color: #e0e6ed;
+  font-size: 1em;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.relatorio-mensal-filtros select:focus,
+.relatorio-mensal-filtros input[type="number"]:focus {
+  border: 1.5px solid #4fc3f7;
+}
+
+.relatorio-mensal-resumo {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.relatorio-mensal-card {
+  min-width: 220px;
+  background: #181c24;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px #0003;
+}
+
+.relatorio-mensal-card .receitas {
+  color: #36A2EB;
+  font-weight: bold;
+  font-size: 18px;
+}
+.relatorio-mensal-card .gastos {
+  color: #FF6384;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 12px;
+}
+.relatorio-mensal-card .saldo {
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 12px;
+}
+.relatorio-mensal-card .valor-receita {
+  font-size: 22px;
+  color: #2ecc40;
+}
+.relatorio-mensal-card .valor-gasto {
+  font-size: 22px;
+  color: #e74c3c;
+}
+.relatorio-mensal-card .valor-saldo {
+  font-size: 22px;
+}
+
+.relatorio-mensal-grafico {
+  width: 320px;
+  height: 240px;
+  background: #181c24;
+  border-radius: 12px;
+  margin: 0 auto 32px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.relatorio-mensal-grafico-label {
+  text-align: center;
+  margin-top: 8px;
+  color: #b0b8c1;
+}
+
+.relatorio-mensal-tabela {
+  overflow-x: auto;
+}
+
+.relatorio-mensal-tabela table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #23283a;
+  color: #e0e6ed;
+}
+
+.relatorio-mensal-tabela th,
+.relatorio-mensal-tabela td {
+  padding: 10px 8px;
+  border: 1px solid #353b4b;
+  text-align: left;
+}
+
+.relatorio-mensal-tabela th {
+  background: #181c24;
+  color: #4fc3f7;
+  font-weight: bold;
+}
+
+.relatorio-mensal-tabela tr:nth-child(even) {
+  background: #23283a;
+}
+
+.relatorio-mensal-tabela tr:nth-child(odd) {
+  background: #181c24;
+}
+
+.relatorio-mensal-tabela .tipo-receita {
+  color: #2ecc40;
+  font-weight: bold;
+}
+.relatorio-mensal-tabela .tipo-gasto {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.relatorio-mensal-tabela .nenhuma-movimentacao {
+  text-align: center;
+  color: #b0b8c1;
+  padding: 16px;
+}

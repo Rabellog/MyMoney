@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './styles/global.css';
 import Login from './components/login'
 import Home from './components/home'
 
