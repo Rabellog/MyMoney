@@ -1,16 +1,24 @@
-import React, { useState } from 'react'; 
+import React, { useState } from 'react';
+import { Routes, Route, NavLink, Navigate } from 'react-router-dom';
+
 import CadastroGastos from './cadastrogastos';
 import GraficoPizza from './graficopizza';
 import RelatorioMensal from './relatoriomensal';
 import CadastroRecebimentos from './cadastrorecebimentos';
-import FiltroCategoria from './filtrocategoria'; 
+import FiltroCategoria from './filtrocategoria';
 
 import '../styles/home.css';
 
-export default function Home({ onLogout }) {
+const navLinkStyles = ({ isActive }) => {
+  return {
+    fontWeight: isActive ? 'bold' : 'normal',
+    textDecoration: isActive ? 'underline' : 'none',
+  };
+};
+
+export default function App({ onLogout }) {
   const [expenses, setExpenses] = useState([]);
   const [incomes, setIncomes] = useState([]);
-  const [telaAtual, setTelaAtual] = useState('cadastroGastos');
 
   function handleAddExpense(expense) {
     setExpenses(prev => [
@@ -30,51 +38,63 @@ export default function Home({ onLogout }) {
     ]);
   }
 
-  
-
   return (
     <div className="home-container">
       <nav className="home-nav">
-        <button className="nav-button" onClick={() => setTelaAtual('cadastroGastos')}>
+        <NavLink to="/gastos" className="nav-button" style={navLinkStyles}>
           Cadastro de Gastos
-        </button>
-        <button className="nav-button" onClick={() => setTelaAtual('cadastroRecebimentos')}>
+        </NavLink>
+        <NavLink to="/recebimentos" className="nav-button" style={navLinkStyles}>
           Cadastro de Recebimentos
-        </button>
-        <button className="nav-button" onClick={() => setTelaAtual('relatorioMensal')}>
+        </NavLink>
+        <NavLink to="/relatorio" className="nav-button" style={navLinkStyles}>
           Relatório Mensal
-        </button>
-        <button className="nav-button" onClick={() => setTelaAtual('filtroCategoria')}>
+        </NavLink>
+        <NavLink to="/filtro" className="nav-button" style={navLinkStyles}>
           Filtro por Categoria
-        </button>
+        </NavLink>
         <button className="nav-button logout-button" onClick={onLogout}>
           Logout
         </button>
       </nav>
 
       <div className="home-content">
-        {telaAtual === 'cadastroGastos' && (
-          <>
-            <CadastroGastos
-              expenses={expenses}
-              onAddExpense={handleAddExpense}
-              onDeleteExpense={handleDeleteExpense}
-            />
-            <GraficoPizza gastos={expenses} />
-          </>
-        )}
-        {telaAtual === 'cadastroRecebimentos' && (
-          <CadastroRecebimentos
-            incomes={incomes}
-            onAddIncome={handleAddIncome}
+        <Routes>
+          <Route path="/" element={<Navigate to="/gastos" />} />
+
+          <Route
+            path="/gastos"
+            element={
+              <>
+                <CadastroGastos
+                  expenses={expenses}
+                  onAddExpense={handleAddExpense}
+                  onDeleteExpense={handleDeleteExpense}
+                />
+                <GraficoPizza gastos={expenses} />
+              </>
+            }
           />
-        )}
-        {telaAtual === 'relatorioMensal' && (
-          <RelatorioMensal expenses={expenses} incomes={incomes} />
-        )}    
-        {telaAtual === 'filtroCategoria' && (
-          <FiltroCategoria expenses={expenses} />
-        )}
+          <Route
+            path="/recebimentos"
+            element={
+              <CadastroRecebimentos
+                incomes={incomes}
+                onAddIncome={handleAddIncome}
+              />
+            }
+          />
+          <Route
+            path="/relatorio"
+            element={<RelatorioMensal expenses={expenses} incomes={incomes} />}
+          />
+          <Route
+            path="/filtro"
+            element={<FiltroCategoria expenses={expenses} />}
+          />
+          
+          <Route path="*" element={<h2>Página não encontrada</h2>} />
+        </Routes>
       </div>
     </div>
   );
