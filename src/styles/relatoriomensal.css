@@ -86,26 +86,48 @@
   font-size: 22px;
 }
 
-.relatorio-mensal-grafico {
-  width: 320px;
-  height: 240px;
-  background: #181c24;
-  border-radius: 12px;
-  margin: 0 auto 32px auto;
+.relatorio-mensal-blocos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+
+.relatorio-mensal-bloco {
+  background: #23283a;
+  border-radius: 6px; /* menor arredondamento */
+  box-shadow: 0 2px 8px #0003;
+  padding: 32px 18px 18px 18px; /* aumente o padding-top */
+  min-width: 340px;
+  max-width: 440px;
+  flex: 1 1 340px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  margin-bottom: 32px;
+  /* NÃO coloque overflow: hidden */
 }
 
-.relatorio-mensal-grafico-label {
-  text-align: center;
-  margin-top: 8px;
-  color: #b0b8c1;
+.relatorio-mensal-grafico {
+  width: 100%;
+  min-width: 260px;
+  max-width: 380px;
+  height: 300px; /* aumente a altura */
+  margin-bottom: 24px;
+  background: #181c24;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible; 
+  padding: 32px; /* aumente o padding */
 }
 
 .relatorio-mensal-tabela {
-  overflow-x: auto;
+  width: 100%;
+  margin-top: 8px;
 }
 
 .relatorio-mensal-tabela table {
@@ -113,6 +135,7 @@
   border-collapse: collapse;
   background: #23283a;
   color: #e0e6ed;
+  margin-bottom: 0;
 }
 
 .relatorio-mensal-tabela th,
@@ -134,15 +157,6 @@
 
 .relatorio-mensal-tabela tr:nth-child(odd) {
   background: #181c24;
-}
-
-.relatorio-mensal-tabela .tipo-receita {
-  color: #2ecc40;
-  font-weight: bold;
-}
-.relatorio-mensal-tabela .tipo-gasto {
-  color: #e74c3c;
-  font-weight: bold;
 }
 
 .relatorio-mensal-tabela .nenhuma-movimentacao {

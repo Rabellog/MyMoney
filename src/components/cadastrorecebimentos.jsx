@@ -92,11 +92,11 @@ export default function CadastroRecebimentos({ incomes, onAddIncome, onDeleteInc
 
       <div className="incomes-list-section">
         <h3>Meus Recebimentos</h3>
-        {incomes.length === 0 ? (
+        {incomes && incomes.length === 0 ? (
           <p className="no-incomes-message">Nenhum recebimento cadastrado ainda.</p>
         ) : (
           <ul className="incomes-list">
-            {incomes.map((income) => (
+            {incomes && incomes.map((income) => (
               <li key={income.id} className="income-item">
                 <div>
                   <strong>{income.description}</strong> - R$ {income.amount.toFixed(2)} ({income.category}) - <small>{income.date}</small>

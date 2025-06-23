@@ -43,10 +43,10 @@ export default function CadastroGastos({ expenses, onAddExpense, onDeleteExpense
   };
 
   return (
-    <div className="spending-container">
+    <div className="gastos-container">
       <h2>Cadastro de Gastos (Saída)</h2>
 
-      <form onSubmit={handleSubmit} className="expense-form">
+      <form onSubmit={handleSubmit} className="gasto-form">
         <div>
           <label htmlFor="description">Descrição:</label>
           <input
@@ -68,7 +68,7 @@ export default function CadastroGastos({ expenses, onAddExpense, onDeleteExpense
             required
           />
         </div>
-        <div className="category-field">
+        <div className="categoria-field">
           <label htmlFor="category">Categoria:</label>
           <select
             id="category"
@@ -83,29 +83,27 @@ export default function CadastroGastos({ expenses, onAddExpense, onDeleteExpense
         <button type="submit">Adicionar Gasto</button>
       </form>
 
-      <div className="expenses-list-section">
-        <h3>Meus Gastos</h3>
+      <h3>Meus Gastos</h3>
+      <ul className="gastos-list">
         {expenses.length === 0 ? (
           <p className="no-expenses-message">Nenhum gasto cadastrado ainda.</p>
         ) : (
-          <ul className="expenses-list">
-            {expenses.map((expense) => (
-              <li key={expense.id} className="expense-item">
-                <div>
-                  <strong>{expense.description}</strong> - R$ {expense.amount.toFixed(2)} ({expense.category}) - <small>{expense.date}</small>
-                </div>
-                <button
-                  onClick={() => handleDeleteExpenseClick(expense.id)}
-                  className="delete-expense-button"
-                  title="Remover gasto"
-                >
-                  &times;
-                </button>
-              </li>
-            ))}
-          </ul>
+          expenses.map((expense) => (
+            <li key={expense.id} className="gasto-item">
+              <div>
+                <strong>{expense.description}</strong> - R$ {expense.amount.toFixed(2)} ({expense.category}) - <small>{expense.date}</small>
+              </div>
+              <button
+                onClick={() => handleDeleteExpenseClick(expense.id)}
+                className="delete-expense-button"
+                title="Remover gasto"
+              >
+                &times;
+              </button>
+            </li>
+          ))
         )}
-      </div>
+      </ul>
     </div>
   );
 }

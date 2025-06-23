@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import CadastroGastos from './cadastrogastos';
 import GraficoPizza from './graficopizza';
 import RelatorioMensal from './relatoriomensal';
+import CadastroRecebimentos from './cadastrorecebimentos';
 
 import '../styles/home.css';
 
@@ -27,13 +28,6 @@ export default function Home({ onLogout }) {
       { ...income, id: Date.now() }
     ]);
   }
-
-  const CadastroRecebimentos = () => (
-    <div className="cadastro-recebimentos">
-      <h2>Cadastro de Recebimentos</h2>
-      {/* Implemente o formulário de cadastro de recebimentos aqui */}
-    </div>
-  );
 
   const FiltroCategoria = () => <div>Filtro por Categoria (implemente aqui)</div>;
 
