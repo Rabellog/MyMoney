@@ -3,6 +3,7 @@ import CadastroGastos from './cadastrogastos';
 import GraficoPizza from './graficopizza';
 import RelatorioMensal from './relatoriomensal';
 import CadastroRecebimentos from './cadastrorecebimentos';
+import FiltroCategoria from './filtrocategoria'; 
 
 import '../styles/home.css';
 
@@ -29,7 +30,7 @@ export default function Home({ onLogout }) {
     ]);
   }
 
-  const FiltroCategoria = () => <div>Filtro por Categoria (implemente aqui)</div>;
+  
 
   return (
     <div className="home-container">
@@ -70,7 +71,7 @@ export default function Home({ onLogout }) {
         )}
         {telaAtual === 'relatorioMensal' && (
           <RelatorioMensal expenses={expenses} incomes={incomes} />
-        )}
+        )}    
         {telaAtual === 'filtroCategoria' && (
           <FiltroCategoria expenses={expenses} />
         )}
